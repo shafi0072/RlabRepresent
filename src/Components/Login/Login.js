@@ -37,6 +37,7 @@ const Login = () => {
                         }}>Log In</h2>
                 </div>
 
+                <form action="">
                 <div className="">
                     <div class="mb-3 row">
 
@@ -73,6 +74,7 @@ const Login = () => {
                     <p>Don't have an account?<span onClick={handleSignUp} className="creatAccount">Create an account</span>
                     </p>
                 </div>
+                </form>
             </div>}
 
             {click.signUp && <div className="loginBox signup">
@@ -91,6 +93,7 @@ const Login = () => {
                         }}>Sign Up</h2>
                 </div>
 
+                <form action="">
                 <div className="">
                     <div class="mb-3 row">
 
@@ -152,6 +155,7 @@ const Login = () => {
                     <p>Already have an account?<span onClick={handleLogin} className="creatAccount">Log In</span>
                     </p>
                 </div>
+                </form>
             </div>}
         </div>
     );
