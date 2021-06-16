@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css';
 import logo from '../../Resorces/logo_RLAB.png'
+import { userContext } from '../../App';
+import firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from './firebase.config';
+
+firebase.initializeApp(firebaseConfig);
+
 const Login = () => {
+
     const [click, setClick] = useState({
         login: true,
         signUp: false
@@ -12,12 +20,66 @@ const Login = () => {
         newClick.signUp  = true;
         setClick(newClick)
     }
+    
     const handleLogin = () => {
         const newClick = {...click}
         newClick.login = true;
         newClick.signUp  = false;
         setClick(newClick)
+    };
+    const [user, setUser] = useContext(userContext);
+    const handleOnChange = (e) => {
+        const newUserInfo = {...user}
+        newUserInfo[e.target.name] = e.target.value;
+        setUser(newUserInfo);
+        console.log(user.ConfirmPassword);
     }
+    const handleCreateAccount = (e) => {
+        firebase.auth().createUserWithEmailAndPassword(user.email, user.ConfirmPassword)
+        .then(res => {
+            const newUserInfo = {...user};
+            newUserInfo.error = "";
+            newUserInfo.success = true;
+            setUser(newUserInfo);
+            
+        }
+        )
+        .catch(error => {
+            const newUserInfo = {
+                ...user
+            };
+            newUserInfo.error = error.message;
+            newUserInfo.success = false;
+            setUser(newUserInfo)
+
+        });
+        e.preventDefault()
+    }
+   const handleSubmitLogin = (e) => {
+    firebase
+    .auth()
+    .signInWithEmailAndPassword(user.email, user.ConfirmPassword)
+    .then(res => {
+
+        const newUserInfo = {
+            ...user
+        };
+        newUserInfo.error = "";
+        newUserInfo.success = true;
+        setUser(newUserInfo);
+        
+        console.log(res.user);
+    })
+    .catch(function (error) {
+        const newUserInfo = {
+            ...user
+        };
+        newUserInfo.error = error.message;
+        newUserInfo.success = false;
+        setUser(newUserInfo)
+    })
+    e.preventDefault()
+   }
     return (
         <div className='background d-flex justify-content-center p-5'>
 
@@ -36,8 +98,9 @@ const Login = () => {
                             fontFamily: "'Raleway', sans-serif"
                         }}>Log In</h2>
                 </div>
-
-                <form action="">
+                <p className="text-danger">{user.error}</p>
+                {user.success && <p className='text-success'>Log in successfull</p>}
+                <form action="" onSubmit={handleSubmitLogin}>
                 <div className="">
                     <div class="mb-3 row">
 
@@ -46,6 +109,7 @@ const Login = () => {
                                 type="text"
                                 class="form-control"
                                 id="staticEmail"
+                                name="email"
                                 placeholder="User email"/>
                         </div>
                     </div>
@@ -55,6 +119,7 @@ const Login = () => {
                                 type="password"
                                 class="form-control"
                                 id="inputPassword"
+                                name="ConfirmPassword"
                                 placeholder="Password"/>
                         </div>
                     </div>
@@ -68,12 +133,13 @@ const Login = () => {
                     <a href="#" className="forgotTxt">Forgot Password</a>
                 </div>
                 <div>
-                    <button className="form-control bg-primary text-light">Log In</button>
+                    <button className="form-control bg-primary text-light" type='submit'>Log In</button>
                 </div>
                 <div className="creatTxt">
                     <p>Don't have an account?<span onClick={handleSignUp} className="creatAccount">Create an account</span>
                     </p>
                 </div>
+                
                 </form>
             </div>}
 
@@ -92,69 +158,78 @@ const Login = () => {
                             fontFamily: "'Raleway', sans-serif"
                         }}>Sign Up</h2>
                 </div>
-
-                <form action="">
+                <p className='text-danger'>{user.error}</p>
+                {user.success && <p className='text-success'>SignUp SuccessFull</p>}
+                <form action="" onSubmit={handleCreateAccount}>
                 <div className="">
                     <div class="mb-3 row">
 
                         <div class="col-sm-10 input-box">
                             <input
+                                onChange={handleOnChange}
                                 type="text"
                                 class="form-control"
                                 id="staticEmail"
                                 placeholder="First Name"
-                                name="frstNae"/>
+                                name="name"/>
                         </div>
                     </div>
                     <div class="mb-3 row">
 
                         <div class="col-sm-10 input-box">
                             <input
+                            onChange={handleOnChange}
                                 type="text"
                                 class="form-control"
                                 id="staticEmail"
                                 placeholder="Last Name"
-                                name="frstNae"/>
+                                name="name"/>
                         </div>
                     </div>
                     <div class="mb-3 row">
 
                         <div class="col-sm-10 input-box">
                             <input
+                            onChange={handleOnChange}
                                 type="email"
                                 class="form-control"
                                 id="staticEmail"
-                                placeholder="Email "
-                                name="frstNae"/>
+                                placeholder="Email"
+                                name="email"/>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="col-sm-10 input-box">
                             <input
+                            onChange={handleOnChange}
                                 type="password"
                                 class="form-control"
                                 id="inputPassword"
+                                name="ConfirmPassword"
                                 placeholder="Password"/>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="col-sm-10 input-box">
                             <input
+                            onChange={handleOnChange}
                                 type="password"
                                 class="form-control"
                                 id="inputPassword"
+                                name="ConfirmPassword"
                                 placeholder="Confirm Password"/>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <button className="form-control bg-primary text-light">Log In</button>
+                    <button className="form-control bg-primary text-light" type='submit'>Log In</button>
                 </div>
                 <div className="creatTxt">
                     <p>Already have an account?<span onClick={handleLogin} className="creatAccount">Log In</span>
                     </p>
                 </div>
+                
                 </form>
             </div>}
         </div>

@@ -39,6 +39,7 @@
 .creatTxt .creatAccount{
     text-decoration: none;
     cursor: pointer;
+    color: #5B73F7;
 }
 .creatTxt .creatAccount:hover{
     text-decoration: underline;
