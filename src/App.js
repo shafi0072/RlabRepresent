@@ -26,7 +26,7 @@ const App = () => {
       <Router>
       <Switch>
         <Route path='/auth' component={Login} />
-        <Route path='/userInfo' component={UserHome}/>
+        <Route exact path='/' component={UserHome}/>
       </Switch>
     </Router>
     </userContext.Provider>
