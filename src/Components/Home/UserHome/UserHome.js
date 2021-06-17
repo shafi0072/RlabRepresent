@@ -5,7 +5,8 @@ import User from '../User/User'
 import logo from '../../../Resorces/logo_RLAB.png'
 import { userContext } from '../../../App';
 import Rechart from './Rechart';
-import Devices from '../Devices/Devices'
+import Devices from '../Devices/Devices';
+import Location from '../Locations/Locations'
 const UserHome = () => {
    
     const [user, setUser] = useContext(userContext);
@@ -21,6 +22,7 @@ const UserHome = () => {
                 {user.userHome && <Rechart/>}
                 {user.user&& <User/>}
                 {user.devices && <Devices/>}
+                {user.locations && <Location/>}
             </div>
         </div>
     );
