@@ -18,7 +18,11 @@ const App = () => {
     error: "",
     success: false,
     LoggedInUser: true,
-    newUser: false
+    newUser: false,
+    userHome: true,
+    user: false,
+    devices: false,
+    locations: false
 
   })
   return (

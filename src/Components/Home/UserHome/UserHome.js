@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../Shared/Navbar';
 import './UserHome.css'
 import User from '../User/User'
 import logo from '../../../Resorces/logo_RLAB.png'
 const UserHome = () => {
+    const [clickMenu, setClickMenu]  = useState({
+       
+    });
+    console.log(clickMenu.userHome);
     return (
         <div className='row'>
             
             <div className="col-md-3" style={{margin:'0', padding:'0'}}>
-                <Navbar/>
+                <Navbar menu={clickMenu, setClickMenu}/>
             </div>
             <div className="col-md-9 backgroundSIDE text-center">
             <img src={logo} alt="" style={{width:'20%'}} className='mt-5' />
-                <User/>
+                {<User/>}
             </div>
         </div>
     );
