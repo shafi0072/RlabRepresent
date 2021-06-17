@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import UserHome from './Components/Home/UserHome/UserHome';
 export const userContext = createContext()
 const App = () => {
   const [user, setUser] = useState({
@@ -25,6 +26,7 @@ const App = () => {
       <Router>
       <Switch>
         <Route path='/auth' component={Login} />
+        <Route path='/userInfo' component={UserHome}/>
       </Switch>
     </Router>
     </userContext.Provider>
