@@ -14,6 +14,7 @@ const User = () => {
     }
     return (
         <div className='mt-5 text-center'>
+        <h1 className='text-light'>User</h1>
           {click.clickToUser && <div>
            <div className="clients d-flex justify-content-evenly mb-5">
                 <div className="name"><p>Ramos</p></div>
