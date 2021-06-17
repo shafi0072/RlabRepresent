@@ -23,7 +23,6 @@ const App = () => {
     user: false,
     devices: false,
     locations: false
-
   })
   return (
     <userContext.Provider value={[user, setUser]}>
