@@ -4,7 +4,8 @@ import './UserHome.css'
 import User from '../User/User'
 import logo from '../../../Resorces/logo_RLAB.png'
 import { userContext } from '../../../App';
-import Rechart from './Rechart'
+import Rechart from './Rechart';
+import Devices from '../Devices/Devices'
 const UserHome = () => {
    
     const [user, setUser] = useContext(userContext);
@@ -19,6 +20,7 @@ const UserHome = () => {
             <img src={logo} alt="" style={{width:'20%'}} className='mt-5' />
                 {user.userHome && <Rechart/>}
                 {user.user&& <User/>}
+                {user.devices && <Devices/>}
             </div>
         </div>
     );

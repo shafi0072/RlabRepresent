@@ -49,7 +49,7 @@ const data = [
 
 const Rechart = () => {
     return (
-        <div>
+        <div className='mt-5'>
         <LineChart width={900} height={160} data={data} >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" interval="preserveEnd" />

@@ -38,10 +38,10 @@ const Navbar = (props) => {
     return (
         <div className='navBackground d-flex justify-content-center pt-5'>
             <ul style={{listStyle:'none'}}>
-                <li className='mb-4' onClick={handleHomeClick}><h5>User Home</h5></li>
-                <li className='mb-4' onClick={handleUserClick}><h5>User</h5></li>
-                <li className='mb-4' onClick={handleDeviceClick}><h5>Devices</h5></li>
-                <li className='mb-4' onClick={handleLocationClick}><h5>Locations</h5></li>
+                <li className='mb-4' onClick={handleHomeClick} style={{cursor:'pointer'}}><h5>User Home</h5></li>
+                <li className='mb-4' onClick={handleUserClick} style={{cursor:'pointer'}}><h5>User</h5></li>
+                <li className='mb-4' onClick={handleDeviceClick} style={{cursor:'pointer'}}><h5>Devices</h5></li>
+                <li className='mb-4' onClick={handleLocationClick} style={{cursor:'pointer'}}><h5>Locations</h5></li>
             </ul>
         </div>
     );
