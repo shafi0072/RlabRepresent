@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { userContext } from '../../../App';
+import LocationUser from './LocationUser';
 
 const Locations = () => {
+    const [user, setUser] = useContext(userContext)
     return (
-        <div className="d-flex justify-content-center align-items-center mt-5">
-            <form action="">
+        <div className="">
+           {user.admin && <div className="row d-flex justify-content-center align-items-center mt-5">
+           <form action="">
                 <div className="d-flex justiy-content-around mb-3">
                     <label className="text-light" htmlFor="locationId" style={{marginRight:'60px'}}>Location ID</label>
                     <input type="text" id='locationId' placeholder='PlantaLiners'/>
@@ -20,7 +24,10 @@ const Locations = () => {
                 </div>
                 <button className="btn btn-primary" style={{marginLeft:'65%'}}>Create/Save</button>
             </form>
-            
+           </div>}
+            <div className="row mt-5 ms-5">
+            {user.viewer &&<LocationUser/>}
+            </div>
         </div>
     );
 };
