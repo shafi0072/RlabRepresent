@@ -50,7 +50,9 @@ const User = () => {
                 </select>
                 <button className="btn btn-primary btnArea">Edit</button>
             </div>
-            <button className="btn btn-primary" onClick={handleClick}>Add User</button>
+            <div className="button d-flex justify-content-end">
+                <button className="btn btn-primary" onClick={handleClick}>Add User</button>
+            </div>    
            </div>}
             <div>
                 {click.clickToFrom && <UserForm/>}
