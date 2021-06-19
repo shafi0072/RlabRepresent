@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { userContext } from '../../../App';
 import LocationUser from './LocationUser';
-
+import './Location.css'
 const Locations = () => {
     const [user, setUser] = useContext(userContext)
     return (
