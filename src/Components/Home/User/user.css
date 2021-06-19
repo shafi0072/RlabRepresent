@@ -43,3 +43,13 @@
 .button .btn:hover{
     background-color: rgb(19, 19, 255);
 }
+
+/* #### UserForm ####### */
+
+.interface-name{
+    width: 17.5%;
+}
+.create-button{
+    text-align: right;
+    margin-left: 79.7%;
+}
