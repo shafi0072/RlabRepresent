@@ -41,7 +41,7 @@ const Login = () => {
             newUserInfo.error = "";
             newUserInfo.success = true;
             setUser(newUserInfo);
-            
+            updateUserInfo(user.name)
         }
         )
         .catch(error => {
@@ -56,18 +56,16 @@ const Login = () => {
         e.preventDefault()
     }
    const handleSubmitLogin = (e) => {
-    firebase
-    .auth()
-    .signInWithEmailAndPassword(user.email, user.ConfirmPassword)
+    firebase.auth().signInWithEmailAndPassword(user.email, user.ConfirmPassword)
     .then(res => {
 
         const newUserInfo = {
             ...user
         };
+        newUserInfo.email = user.email;
         newUserInfo.error = "";
         newUserInfo.success = true;
         setUser(newUserInfo);
-        
         console.log(res.user);
     })
     .catch(function (error) {
@@ -76,10 +74,22 @@ const Login = () => {
         };
         newUserInfo.error = error.message;
         newUserInfo.success = false;
-        setUser(newUserInfo)
+        setUser(newUserInfo);
+        console.log(error);
     })
     e.preventDefault()
    }
+   const updateUserInfo = name => {
+    const user = firebase.auth().currentUser;
+
+    user.updateProfile({
+    displayName: name,
+    }).then(function() {
+    console.log("User name Updated SuccessFully")
+    }).catch(function(error) {
+     console.log(error)
+    });
+}
     return (
         <div className='background d-flex justify-content-center p-5'>
 
