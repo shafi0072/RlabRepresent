@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
 import { userContext } from '../../../App';
 import LocationUser from './LocationUser';
+<<<<<<< HEAD
 import './Location.css';
+=======
+import './Location.css'
+>>>>>>> 818c64a97b2c0b1c7713fda719ec74df5757c02a
 const Locations = () => {
     const [user, setUser] = useContext(userContext)
     return (
